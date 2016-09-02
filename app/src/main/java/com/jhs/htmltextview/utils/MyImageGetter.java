@@ -87,7 +87,7 @@ public class MyImageGetter implements Html.ImageGetter {
             URL Url;
             try {
                 Url = new URL(url);
-                drawable = Drawable.createFromStream(Url.openStream(), "");
+                drawable = Drawable.createFromStream(Url.openStream(), "src");
             } catch (Exception e) {
                 return null;
             }

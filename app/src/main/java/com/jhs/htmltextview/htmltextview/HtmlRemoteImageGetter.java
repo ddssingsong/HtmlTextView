@@ -17,12 +17,11 @@
 
 package com.jhs.htmltextview.htmltextview;
 
+import android.content.Context;
 import android.widget.TextView;
 
 /**
- *
  * This class was deprecated in favor of HtmlHttpImageGetter
- *
  */
 @Deprecated
 public final class HtmlRemoteImageGetter extends HtmlHttpImageGetter {
@@ -35,8 +34,8 @@ public final class HtmlRemoteImageGetter extends HtmlHttpImageGetter {
         super(textView, baseUrl);
     }
 
-    public HtmlRemoteImageGetter(TextView textView, String baseUrl, boolean matchParentWidth) {
-        super(textView, baseUrl, matchParentWidth);
+    public HtmlRemoteImageGetter(TextView textView, String baseUrl, boolean matchParentWidth, Context context) {
+        super(textView, baseUrl, matchParentWidth, context);
     }
 
 }

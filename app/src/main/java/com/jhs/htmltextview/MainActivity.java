@@ -8,9 +8,9 @@ import android.text.Html;
 import android.text.Spanned;
 import android.widget.TextView;
 
+import com.jhs.htmltextview.htmltextview.HtmlHttpImageGetter;
 import com.jhs.htmltextview.utils.JavaHttpUtil;
 import com.jhs.htmltextview.utils.MTagHandler;
-import com.jhs.htmltextview.utils.MyImageGetter;
 import com.jhs.htmltextview.utils.StreamUtil;
 
 import java.io.InputStream;
@@ -42,14 +42,15 @@ import java.io.InputStream;
  */
 public class MainActivity extends AppCompatActivity {
     TextView text;
-    String url = "http://218.245.0.52:8081/news/Index?infoId=72";
+    String url = "https://www.baidu.com/";
 
-    private Spanned spanned;
+    private String content;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0) {
+                Spanned spanned = Html.fromHtml(content, new HtmlHttpImageGetter(text, "", true), new MTagHandler());
                 text.setText(spanned);
             }
         }
@@ -68,13 +69,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 InputStream is = JavaHttpUtil.httpGet(url, null);
-                String content = StreamUtil.stream2String(is);
-                spanned = Html.fromHtml(content, new MyImageGetter(text, MainActivity.this), new MTagHandler());
+                content = StreamUtil.stream2String(is);
                 handler.sendEmptyMessage(0);
 
             }
@@ -82,4 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }

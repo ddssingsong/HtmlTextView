@@ -58,6 +58,7 @@ public class HtmlHttpImageGetter implements ImageGetter {
     }
 
     public Drawable getDrawable(String source) {
+
         UrlDrawable urlDrawable = new UrlDrawable();
 
         // get the actual source
@@ -72,7 +73,7 @@ public class HtmlHttpImageGetter implements ImageGetter {
     /**
      * Static inner {@link AsyncTask} that keeps a {@link WeakReference} to the {@link UrlDrawable}
      * and {@link HtmlHttpImageGetter}.
-     * <p/>
+     * <p>
      * This way, if the AsyncTask has a longer life span than the UrlDrawable,
      * we won't leak the UrlDrawable or the HtmlRemoteImageGetter.
      */
